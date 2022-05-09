@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	delay := flag.Duration("delay", envOrDefault("delay", time.Second*60), "duration string to delay shutting down this application after a SIGTERM")
+	delay := flag.Duration("delay", envOrDefault("delay", time.Second*30), "duration string to delay shutting down this application after a SIGTERM")
 	flag.Parse()
 
 	sigs := make(chan os.Signal, 1)
@@ -24,6 +24,7 @@ func main() {
 		fmt.Printf("I've been interrupted with a %s!\n", sig)
 		fmt.Printf("Gracefully Shutting Down in %s\n", delay)
 		signalReceived := time.Now().UTC()
+		//todo: do a timer and a ticker in a select
 		ticker := time.NewTicker(time.Second * 5)
 		for _ = range ticker.C {
 			durationUntilShutdown := *delay - time.Since(signalReceived)
@@ -35,7 +36,7 @@ func main() {
 		}
 	}()
 
-	fmt.Println("awaiting SIGTERM signal")
+	fmt.Printf("awaiting SIGTERM signal (pid=%d)\n", os.Getpid())
 	<-done
 	fmt.Println("exiting")
 }
