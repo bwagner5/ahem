@@ -2,14 +2,14 @@
 
 A Helm chart for Ahem
 
-![Version: 0.0.1-dirty](https://img.shields.io/badge/Version-0.0.1--dirty-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1-dirty](https://img.shields.io/badge/AppVersion-0.0.1--dirty-informational?style=flat-square)
+![Version: 0.0.1](https://img.shields.io/badge/Version-0.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
 ## Installing the Chart
 
 ```bash
 helm upgrade --install --namespace default --create-namespace \
   ahem oci://public.ecr.aws/brandonwagner/ahem \
-  --version 0.0.1-dirty
+  --version 0.0.1
 ```
 
 ## Values
@@ -22,7 +22,7 @@ helm upgrade --install --namespace default --create-namespace \
 | env | list | `[]` | Additional environment variables for the controller pod. |
 | fullnameOverride | string | `""` | Overrides the chart's computed fullname. |
 | hostNetwork | bool | `false` | Bind the pod to the host network. |
-| image | string | `"public.ecr.aws/brandonwagner/ahem:v0.0.1-dirty@sha256:0abc86136ec1d8585724b392f88826b2b4a8b8830d797eab1c02099473ced363"` | Controller image. |
+| image | string | `"public.ecr.aws/brandonwagner/ahem:v0.0.1@sha256:afcdc0385f7fbda53a157f5a159f50b53ebc0d3f1f3767f5f62453d31c282b28"` | Controller image. |
 | imagePullPolicy | string | `"IfNotPresent"` | Image pull policy for Docker images. |
 | imagePullSecrets | list | `[]` | Image pull secrets for Docker images. |
 | nameOverride | string | `""` | Overrides the chart's name. |
