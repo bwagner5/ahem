@@ -1,0 +1,18 @@
+{{ template "chart.header" . }}
+{{ template "chart.description" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+## Installing the Chart
+
+```bash
+helm upgrade --install --namespace default --create-namespace \
+  ahem oci://public.ecr.aws/brandonwagner/ahem \
+  --version {{ template "chart.version" . }}
+```
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "helm-docs.versionFooter" . }}

@@ -1,0 +1,11 @@
+apiVersion: v2
+name: ahem
+description: A Helm chart for Ahem
+type: application
+version: "0.0.1-dirty"
+appVersion: "0.0.1-dirty"
+keywords:
+  - spot
+  - demo
+sources:
+  - https://github.com/bwagner5/ahem

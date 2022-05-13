@@ -1,0 +1,57 @@
+# -- Overrides the chart's name.
+nameOverride: ""
+# -- Overrides the chart's computed fullname.
+fullnameOverride: ""
+# -- Additional labels to add into metadata.
+additionalLabels: {}
+# -- Additional annotations to add into metadata.
+additionalAnnotations: {}
+# -- Image pull policy for Docker images.
+imagePullPolicy: IfNotPresent
+# -- Image pull secrets for Docker images.
+imagePullSecrets: []
+# -- Number of replicas.
+replicas: 1
+# -- Strategy for updating the pod.
+strategy:
+  type: Recreate
+# -- Additional labels for the pod.
+podLabels: {}
+# -- Additional annotations for the pod.
+podAnnotations: {}
+podDisruptionBudget:
+  maxUnavailable: 1
+# -- SecurityContext for the pod.
+podSecurityContext:
+  fsGroup: 1000
+# -- PriorityClass name for the pod.
+priorityClassName: #system-cluster-critical
+# -- Override the default termination grace period for the pod.
+terminationGracePeriodSeconds:
+# -- Bind the pod to the host network.
+hostNetwork: false
+# -- Node selectors to schedule the pod to nodes with labels.
+nodeSelector:
+  kubernetes.io/os: linux
+# -- Affinity rules for scheduling the pod.
+affinity: {}
+# -- topologySpreadConstraints to increase the controller resilience
+topologySpreadConstraints: []
+# -- Tolerations to allow the pod to be scheduled to nodes with taints.
+tolerations: []
+# -- Controller image.
+image: "public.ecr.aws/brandonwagner/ahem:v0.0.1-dirty@sha256:0abc86136ec1d8585724b392f88826b2b4a8b8830d797eab1c02099473ced363"
+# -- SecurityContext for the controller container.
+securityContext: {}
+# -- Additional environment variables for the controller pod.
+env: []
+# - name: AWS_REGION
+#   value: eu-central-1
+
+# -- Resources for the pods.
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    memory: 128Mi
