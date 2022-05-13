@@ -9,6 +9,6 @@ yq e -i ".version = \"${VERSION#v}\"" charts/ahem/Chart.yaml
 
 HELM_CHART_FILE_NAME="ahem-${VERSION#v}.tgz"
 cd ${BUILD_DIR}/../charts
-helm package ahem --version ${VERSION}
+helm package ahem --version ${VERSION#v}
 helm push "${HELM_CHART_FILE_NAME}" "oci://${RELEASE_REPO}"
 rm "${HELM_CHART_FILE_NAME}"
