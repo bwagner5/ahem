@@ -24,6 +24,7 @@ verify:
 	go mod tidy
 	go mod download
 	helm-docs
+	helm-lint charts/ahem
 	go vet ./...
 	go fmt ./...
 

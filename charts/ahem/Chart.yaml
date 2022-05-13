@@ -2,8 +2,8 @@ apiVersion: v2
 name: ahem
 description: A Helm chart for Ahem
 type: application
-version: "0.0.1-dirty"
-appVersion: "0.0.1-dirty"
+version: "cb81951-dirty"
+appVersion: "cb81951-dirty"
 keywords:
   - spot
   - demo
