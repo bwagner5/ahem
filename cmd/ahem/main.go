@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	delay := flag.Duration("delay", envOrDefault("delay", time.Second*30), "duration string to delay shutting down this application after a SIGTERM")
+	delay := flag.Duration("delay", envOrDefault("delay", time.Second*25), "duration string to delay shutting down this application after a SIGTERM")
 	flag.Parse()
 
 	sigs := make(chan os.Signal, 1)
