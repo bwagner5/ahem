@@ -31,10 +31,14 @@ hostNetwork: false
 # -- Node selectors to schedule the pod to nodes with labels.
 nodeSelector:
   kubernetes.io/os: linux
+  karpenter.sh/capacity-type: spot
 # -- Affinity rules for scheduling the pod.
 affinity: {}
 # -- topologySpreadConstraints to increase the controller resilience
-topologySpreadConstraints: []
+topologySpreadConstraints:
+  - maxSkew: 1
+    topologyKey: topology.kubernetes.io/zone
+    whenUnsatisfiable: DoNotSchedule
 # -- Tolerations to allow the pod to be scheduled to nodes with taints.
 tolerations: []
 # -- Controller image.
@@ -42,9 +46,9 @@ image: "public.ecr.aws/brandonwagner/ahem:v0.0.3@sha256:83652195abe21dca110b20f2
 # -- SecurityContext for the controller container.
 securityContext: {}
 # -- Additional environment variables for the controller pod.
-env: []
-# - name: AWS_REGION
-#   value: eu-central-1
+env:
+ - name: delay
+   value: 60s
 
 # -- Resources for the pods.
 resources:
