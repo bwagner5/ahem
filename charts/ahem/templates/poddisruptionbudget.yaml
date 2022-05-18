@@ -1,9 +1,0 @@
-apiVersion: {{ include "ahem.pdb.apiVersion" . }}
-kind: PodDisruptionBudget
-metadata:
-  name: ahem
-spec:
-  maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}
-  selector:
-    matchLabels:
-    {{- include "ahem.selectorLabels" . | nindent 6 }}
