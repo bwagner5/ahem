@@ -4,6 +4,8 @@ Ahem is a simple application that waits for a SIGTERM signal and then waits a co
 
 ## Installation:
 
+### Simple Deployment
+
 ```bash
 cat <<EOF | kubectl apply -f -
  apiVersion: apps/v1
@@ -39,12 +41,13 @@ cat <<EOF | kubectl apply -f -
 EOF
 ```
 
+### Helm
 
 ```bash
 helm upgrade --install --namespace default --create-namespace ahem oci://public.ecr.aws/brandonwagner/ahem --version 0.0.3
 ```
 
-Only install on Spot Instances and increase the delay to breach the default termination grace period:
+#### Only install on Spot Instances and increase the delay to breach the default termination grace period:
 
 ```bash
 helm upgrade --install --namespace default --create-namespace ahem oci://public.ecr.aws/brandonwagner/ahem --version 0.0.3 \
