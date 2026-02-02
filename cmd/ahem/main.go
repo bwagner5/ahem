@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"fmt"
+	"log"
 	"os"
 	"os/signal"
 	"syscall"
@@ -19,26 +19,31 @@ func main() {
 	done := make(chan bool, 1)
 
 	go func() {
-		sig := <-sigs
-		fmt.Println()
-		fmt.Printf("I've been interrupted with a %s!\n", sig)
-		fmt.Printf("Gracefully Shutting Down in %s\n", delay)
+		<-sigs
 		signalReceived := time.Now().UTC()
-		//todo: do a timer and a ticker in a select
+		log.Printf("I've been interrupted with a SIGTERM!")
+		log.Printf("Gracefully Shutting Down in %d seconds", int(delay.Seconds()))
+
+		timer := time.NewTimer(*delay)
 		ticker := time.NewTicker(time.Second * 5)
-		for _ = range ticker.C {
-			durationUntilShutdown := *delay - time.Since(signalReceived)
-			if durationUntilShutdown <= 0 {
-				fmt.Println("👋 FINALLY SHUTTING DOWN! BYE!")
-				done <- true
+
+		for {
+			select {
+			case <-ticker.C:
+				durationUntilShutdown := *delay - time.Since(signalReceived)
+				if durationUntilShutdown > 0 {
+					log.Printf("Shutting down in %s")
+				}
+			case <-timer.C:
+				log.Println("👋 FINALLY SHUTTING DOWN!")
+				close(done)
+				return
 			}
-			fmt.Printf("Shutting down in %s\n", durationUntilShutdown)
 		}
 	}()
-
-	fmt.Printf("awaiting SIGTERM signal (pid=%d)\n", os.Getpid())
+	log.Printf("awaiting SIGTERM signal (pid=%d)\n", os.Getpid())
 	<-done
-	fmt.Println("exiting")
+	log.Println("Bye!")
 }
 
 func envOrDefault(key string, def time.Duration) time.Duration {
