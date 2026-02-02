@@ -1,0 +1,60 @@
+# -- Overrides the chart's name.
+nameOverride: ""
+# -- Overrides the chart's computed fullname.
+fullnameOverride: ""
+# -- Additional labels to add into metadata.
+additionalLabels: {}
+# -- Additional annotations to add into metadata.
+additionalAnnotations: {}
+# -- Image pull policy for Docker images.
+imagePullPolicy: IfNotPresent
+# -- Image pull secrets for Docker images.
+imagePullSecrets: []
+# -- Number of replicas.
+replicas: 1
+# -- Strategy for updating the pod.
+strategy:
+  type: Recreate
+# -- Additional labels for the pod.
+podLabels: {}
+# -- Additional annotations for the pod.
+podAnnotations: {}
+# -- SecurityContext for the pod.
+podSecurityContext:
+  fsGroup: 1000
+# -- PriorityClass name for the pod.
+priorityClassName: #system-cluster-critical
+# -- Override the default termination grace period for the pod.
+terminationGracePeriodSeconds:
+# -- Bind the pod to the host network.
+hostNetwork: false
+# -- Node selectors to schedule the pod to nodes with labels.
+nodeSelector: {}
+# -- Affinity rules for scheduling the pod.
+affinity: {}
+# -- topologySpreadConstraints to increase the controller resilience
+topologySpreadConstraints:
+  - maxSkew: 1
+    topologyKey: karpenter.sh/capacity-type
+    whenUnsatisfiable: DoNotSchedule
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/instance: spot-od-split
+# -- Tolerations to allow the pod to be scheduled to nodes with taints.
+tolerations: []
+# -- Controller image.
+image: "public.ecr.aws/brandonwagner/ahem:v0.0.3@sha256:83652195abe21dca110b20f20a20161aaa34c9ff117489e08b503b5586e732e0"
+# -- SecurityContext for the controller container.
+securityContext: {}
+# -- Additional environment variables for the controller pod.
+env:
+ - name: delay
+   value: 15s
+
+# -- Resources for the pods.
+resources:
+  requests:
+    cpu: 2
+    memory: 768Mi
+  limits:
+    memory: 768Mi

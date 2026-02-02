@@ -32,7 +32,7 @@ func main() {
 			case <-ticker.C:
 				durationUntilShutdown := *delay - time.Since(signalReceived)
 				if durationUntilShutdown > 0 {
-					log.Printf("Shutting down in %s")
+					log.Printf("Shutting down in %d seconds", int(durationUntilShutdown.Seconds()))
 				}
 			case <-timer.C:
 				log.Println("👋 FINALLY SHUTTING DOWN!")

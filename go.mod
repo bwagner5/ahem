@@ -1,3 +1,3 @@
 module github.com/bwagner5/ahem
 
-go 1.18
+go 1.25

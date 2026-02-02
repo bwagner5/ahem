@@ -2,14 +2,14 @@
 
 A Helm chart for Ahem
 
-![Version: 0.0.1](https://img.shields.io/badge/Version-0.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
+![Version: 0.0.3](https://img.shields.io/badge/Version-0.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.3](https://img.shields.io/badge/AppVersion-0.0.3-informational?style=flat-square)
 
 ## Installing the Chart
 
 ```bash
 helm upgrade --install --namespace default --create-namespace \
   ahem oci://public.ecr.aws/brandonwagner/ahem \
-  --version 0.0.1
+  --version 0.0.3
 ```
 
 ## Values
@@ -22,13 +22,12 @@ helm upgrade --install --namespace default --create-namespace \
 | env | list | `[]` | Additional environment variables for the controller pod. |
 | fullnameOverride | string | `""` | Overrides the chart's computed fullname. |
 | hostNetwork | bool | `false` | Bind the pod to the host network. |
-| image | string | `"public.ecr.aws/brandonwagner/ahem:v0.0.1@sha256:afcdc0385f7fbda53a157f5a159f50b53ebc0d3f1f3767f5f62453d31c282b28"` | Controller image. |
+| image | string | `"public.ecr.aws/brandonwagner/ahem:v0.0.3@sha256:83652195abe21dca110b20f20a20161aaa34c9ff117489e08b503b5586e732e0"` | Controller image. |
 | imagePullPolicy | string | `"IfNotPresent"` | Image pull policy for Docker images. |
 | imagePullSecrets | list | `[]` | Image pull secrets for Docker images. |
 | nameOverride | string | `""` | Overrides the chart's name. |
 | nodeSelector | object | `{"kubernetes.io/os":"linux"}` | Node selectors to schedule the pod to nodes with labels. |
 | podAnnotations | object | `{}` | Additional annotations for the pod. |
-| podDisruptionBudget.maxUnavailable | int | `1` |  |
 | podLabels | object | `{}` | Additional labels for the pod. |
 | podSecurityContext | object | `{"fsGroup":1000}` | SecurityContext for the pod. |
 | priorityClassName | string | `nil` | PriorityClass name for the pod. |
