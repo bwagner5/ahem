@@ -25,7 +25,7 @@ cat <<EOF | kubectl apply -f -
          app: ahem
      spec:
        containers:
-       - image: public.ecr.aws/brandonwagner/ahem:v0.0.3
+       - image: public.ecr.aws/brandonwagner/ahem:v0.0.4
          name: ahem
          resources:
            requests:
@@ -44,13 +44,13 @@ EOF
 ### Helm
 
 ```bash
-helm upgrade --install --namespace default --create-namespace ahem oci://public.ecr.aws/brandonwagner/ahem --version 0.0.3
+helm upgrade --install --namespace default --create-namespace ahem oci://public.ecr.aws/brandonwagner/ahem --version 0.0.4
 ```
 
 #### Only install on Spot Instances and increase the delay to breach the default termination grace period:
 
 ```bash
-helm upgrade --install --namespace default --create-namespace ahem oci://public.ecr.aws/brandonwagner/ahem --version 0.0.3 \
+helm upgrade --install --namespace default --create-namespace ahem oci://public.ecr.aws/brandonwagner/ahem --version 0.0.4 \
     --set nodeSelector."karpenter\.sh/capacity-type=spot" \
     --set 'env[0].name=delay' \
     --set 'env[0].value=60s'
