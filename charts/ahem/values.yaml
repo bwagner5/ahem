@@ -38,7 +38,7 @@ topologySpreadConstraints: []
 # -- Tolerations to allow the pod to be scheduled to nodes with taints.
 tolerations: []
 # -- Controller image.
-image: "public.ecr.aws/brandonwagner/ahem:v0.0.3@sha256:83652195abe21dca110b20f20a20161aaa34c9ff117489e08b503b5586e732e0"
+image: "public.ecr.aws/brandonwagner/ahem:v0.0.4@sha256:8ed0b0abfd59e8980a59e135266546454199f172cf217fcf3d0c65fcf10889a6"
 # -- SecurityContext for the controller container.
 securityContext: {}
 # -- Additional environment variables for the controller pod.
